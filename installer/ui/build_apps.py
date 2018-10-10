@@ -6,6 +6,7 @@ import time
 from os import walk
 import boto3
 
+
 class BuildPacman(object):
     git_repo_url = "git@github.com:tmobile/pacbot.git"  # This should be changed based on the Repo
     pacman_clone_path = "pacman_cloned_dir_"  # This should be changed based on the system
@@ -45,7 +46,7 @@ class BuildPacman(object):
         print("Uploading Email templates to S3...............\n")
 
         folder_to_upload = "pacman-v2-email-template"
-        local_folder_path = os.path.join(cloned_repo.working_dir , 'emailTemplates', folder_to_upload)
+        local_folder_path = os.path.join(cloned_repo.working_dir, 'emailTemplates', folder_to_upload)
 
         for (dirpath, dirnames, file_names) in walk(local_folder_path):
             files_to_upload = file_names
@@ -57,8 +58,8 @@ class BuildPacman(object):
             key = folder_to_upload + '/' + file_name
 
             if file_name == 'html.handlebars':
-                 extra_args = {'ACL':'public-read'}  # To make this public
-                 self.html_handlebars_uri = '%s/%s/%s' % (s3_client.meta.endpoint_url, bucket, key)  # To be added in config.ts
+                extra_args = {'ACL': 'public-read'}  # To make this public
+                self.html_handlebars_uri = '%s/%s/%s' % (s3_client.meta.endpoint_url, bucket, key)  # To be added in config.ts
 
             s3_client.upload_file(file_path, bucket, key, ExtraArgs=extra_args)
 
@@ -70,7 +71,7 @@ class BuildPacman(object):
         '''
         command = command + ' &>>' + self.log_file
         os.chdir(exec_dir)
-        p = subprocess.Popen(command, shell=True, stdout = subprocess.PIPE)
+        p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         time.sleep(5)
         stdout, stderr = p.communicate()
 
