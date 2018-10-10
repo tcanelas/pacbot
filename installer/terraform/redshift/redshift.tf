@@ -10,7 +10,7 @@ resource "aws_redshift_cluster" "pacman-redshift-cluster" {
   publicly_accessible = false
   vpc_security_group_ids = ["${var.pacman_sgid}"]
   cluster_parameter_group_name = "${var.parameter_group_name}"
-  cluster_subnet_group_name = "${var.subnet_group_name}" 
+  cluster_subnet_group_name = "${var.subnet_group_name}"
   depends_on = ["aws_redshift_parameter_group.pacman_redshift_parameter_group",
                 "aws_redshift_subnet_group.pacman_redshift_subnet_group"]
 }
@@ -23,6 +23,7 @@ output "pacman"
 }
 resource "aws_redshift_parameter_group" "pacman_redshift_parameter_group" {
   name   = "${var.parameter_group_name}"
+  description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
   family = "redshift-1.0"
   parameter {
     name  = "require_ssl"
@@ -32,6 +33,7 @@ resource "aws_redshift_parameter_group" "pacman_redshift_parameter_group" {
 
 resource "aws_redshift_subnet_group" "pacman_redshift_subnet_group" {
   name       = "${var.subnet_group_name}"
+  description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
   subnet_ids = ["${var.subnet_list}"]
   tags {
     environment = "pacman-redshift"

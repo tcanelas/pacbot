@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "pacman-submitBatchjob" {
   function_name = "${var.functionname}"
-  description   = "This resource is created as part of PacMan installation. Do not delete - It may break application"
+  description   = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
   role          = "arn:aws:iam::${var.accountid}:role/${var.lambda_role}"
   handler       = "${var.handler_name}"
   runtime       = "${var.runtime_name}"

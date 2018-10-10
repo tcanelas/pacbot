@@ -1,5 +1,6 @@
 resource "aws_iam_role" "clientrole" {
     name = "${var.client_accountrole}"
+    description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
 assume_role_policy=<<EOF
 {
     "Version": "2012-10-17",

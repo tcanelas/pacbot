@@ -1,6 +1,6 @@
 resource "aws_security_group" "pacman-sg" {
   name        = "pacman"
-  description = "This resource is created as part of PacMan installation. Do not delete - It may break application"
+  description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
   vpc_id      = "${var.vpc-id}"
 
   ingress {

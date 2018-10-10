@@ -28,15 +28,17 @@ output "pacman" {
 
 resource "aws_db_option_group" "pacman_db_option_group" {
   name                     = "${var.option_group_name}"
-  option_group_description = "pacman Option Group"
+  option_group_description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
   engine_name              = "${var.engine_name}"
   major_engine_version     = "${var.engine_version}"
 }
 resource "aws_db_parameter_group" "pacman_db_parameter_group" {
   name   = "${var.parameter_group_name}"
+  description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
   family = "${var.family_name}"
 }
 resource "aws_db_subnet_group" "pacman_subnet_group" {
   name       = "${var.subnet_group_name}"
+  description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
   subnet_ids = ["${var.subnet_list}"]
 }

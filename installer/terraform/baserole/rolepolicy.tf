@@ -1,6 +1,7 @@
 resource "aws_iam_role" "role" {
     name = "${var.baseaccountrole}"
     assume_role_policy = "${var.check ? data.aws_iam_policy_document.policy.json : data.aws_iam_policy_document.assumepolicy.json}"
+    description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
 }
 resource "aws_iam_role_policy_attachment" "pacman-attach1" {
     role       = "${aws_iam_role.role.name}"
@@ -28,6 +29,7 @@ resource "aws_iam_role_policy_attachment" "pacman-attach5" {
 resource "aws_iam_role" "lambda_role" {
     name="${var.lambda_role}"
     assume_role_policy="${data.aws_iam_policy_document.policy.json}"
+    description = "DO-NOT-DELETE-This resource is created as part of PacBot installation"
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_attach1" {
