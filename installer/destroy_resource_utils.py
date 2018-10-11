@@ -8,7 +8,7 @@ def confirm_resource_deletion(aws_access_key, aws_secret_key, region, resource):
     '''
     methodname = resource.replace('-', '_')
     try:
-        getattr(DestroyResource, 'confirm_%s_deletion' % methodname)(aws_access_key, aws_secret_key, region, resource)
+        getattr(DestroyResource, 'confirm_%s_deletion' % methodname)(aws_access_key, aws_secret_key, region)
     except Exception as e:
         pass  # This method may not be defined
 
@@ -18,7 +18,7 @@ class DestroyResource(object):
     This class holds all the classmethod to confirm resource deletion
     '''
     @classmethod
-    def confirm_s3_deletion(cls, aws_access_key, aws_secret_key, region, resource):
+    def confirm_s3_deletion(cls, aws_access_key, aws_secret_key, region):
         '''
         This is to confirm that S3 bucket and all its objects are deleted successfully else this will delete it
         '''
@@ -33,7 +33,7 @@ class DestroyResource(object):
             print("  -- Deleted S3 Bucket and all its objects")
 
     @classmethod
-    def confirm_oss_api_deletion(cls, aws_access_key, aws_secret_key, region, resource):
+    def confirm_oss_api_deletion(cls, aws_access_key, aws_secret_key, region):
         '''
         Delete ECR repository from AWS for API
         '''
@@ -41,7 +41,7 @@ class DestroyResource(object):
         cls.__delete_ecr_repository(aws_access_key, aws_secret_key, region, repository)
 
     @classmethod
-    def confirm_oss_ui_deletion(cls, aws_access_key, aws_secret_key, region, resource):
+    def confirm_oss_ui_deletion(cls, aws_access_key, aws_secret_key, region):
         '''
         Delete ECR repository from AWS for UI
         '''
@@ -49,7 +49,7 @@ class DestroyResource(object):
         cls.__delete_ecr_repository(aws_access_key, aws_secret_key, region, repository)
 
     @classmethod
-    def confirm_batch_deletion(cls, aws_access_key, aws_secret_key, region, resource):
+    def confirm_batch_deletion(cls, aws_access_key, aws_secret_key, region):
         '''
         Delete ECR repository from AWS for Batch
         '''
@@ -83,3 +83,16 @@ class DestroyResource(object):
             print("  -- Deleted repository: " + repository)
         except Exception as e:
             print("  -- skipping the deletion as the repository, " + repository + ", is not found.")
+
+    @classmethod
+    def confirm_baserole_deletion(cls, aws_access_key, aws_secret_key, region):
+        '''
+        Delete ECR repository from AWS for Batch
+        '''
+        iam_client = boto3.client('iam', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name=region)
+        policyarn = "arn:aws:iam::"+ jsonRead._get_base_accountid() + ":policy/" + jsonRead._get_base_account_role_name()
+        try:
+            iam_client.delete_policy(PolicyArn=policyarn)
+            print("  -- Deleting IAM policy, " + jsonRead._get_base_account_role_name())
+        except Exception as e:
+            pass
