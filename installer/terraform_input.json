@@ -1,7 +1,7 @@
 {
     "execution_order": ["baserole", "refresh", "baserole","security","s3",
                             "es", "rds", "redshift","batch", "oss-api", "lambda-submit",
-                            "build-ui", "s3-upload", "oss-ui", "lambda-rule" ],
+                            "build-ui", "s3-upload", "lambda-rule" ],
     "execution_order_test": ["baserole", "refresh", "baserole","security","s3","batch","lambda-rule",
         "oss-api","lambda-submit"],
     "resources" :{
@@ -134,14 +134,10 @@
             "JOB_FUNCTION_ARN": "_get_lambda_fn_arn",
             "RULE_FUNCTION_NAME": "_get_lambda_rule_fn_name",
             "RULE_FUNCTION_ARN": "_get_lambda_rule_fn_arn",
-            "OAUTH2_CLIENT_ID": "_get_OAUTH2_CLIENT_ID"
-        },
-        "oss-ui" : {
-            "ui-ecs-cluster": "_get_ui_ecs_cluster", "task_definition_name" : "_get_ui_task_definition_name",
-            "ecs_execution_role_arn": "_get_ecs_execution_role_arn",
-            "vpc-id" : "_get_vpcid", "subnetid" : "_get_subnet",
-            "alb_sg" : "_get_security_id", "alb_name" : "_get_ui_alb_name", "ui_image" :"_get_ui_image",
-            "ui_container_name" : "_get_ui_container_name", "api-ecs-cluster":"_get_ui_ecs_cluster"
+            "OAUTH2_CLIENT_ID": "_get_OAUTH2_CLIENT_ID",
+            "task_definition_name" : "_get_ui_task_definition_name",
+            "ui_image" :"_get_ui_image",
+            "ui_container_name" : "_get_ui_container_name"
         },
         "build-ui": {
             "build-ui" : "_build_ui_apps"

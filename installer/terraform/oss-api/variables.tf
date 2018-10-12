@@ -5,6 +5,10 @@ variable "api-ecs-cluster" {
   default = "pacman-oss-api"
 }
 
+variable "ui_cloudwatch_group" {
+  default = "pacman_oss_ui"
+}
+
 variable "region" {
   default = ""
 }
@@ -32,6 +36,18 @@ variable "alb_name" {
 
 variable "api_image" {
   default = ""
+}
+
+variable "ui_image" {
+  default = ""
+}
+
+variable "task_definition_name" {
+  default = "nginx"
+}
+
+variable "ui_container_name" {
+  default = "nginx"
 }
 
 variable "config_task_definition_name" {
