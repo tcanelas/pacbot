@@ -56,6 +56,7 @@ class DestroyResource(object):
         repository = jsonRead._get_batch_repo()
         cls.__delete_ecr_repository(aws_access_key, aws_secret_key, region, repository)
         cls.__deregister_batch_job_definition(aws_access_key, aws_secret_key, region)
+        cls.__deregister_task_definition(aws_access_key, aws_secret_key, region)
 
     @classmethod
     def __deregister_batch_job_definition(cls, aws_access_key, aws_secret_key, region):
@@ -72,6 +73,21 @@ class DestroyResource(object):
             for job_definition in job_definitions['jobDefinitions']:
                 batch_client.deregister_job_definition(jobDefinition=job_definition_name + ":" + str(job_definition['revision']))
             print("  -- Deregistered " + len(job_definitions['jobDefinitions']) + " Rule Engine batch job definitions.")
+
+    @classmethod
+    def __deregister_task_definition(cls, aws_access_key, aws_secret_key, region):
+        '''
+        De reistering all the Job definitions associated with Rule egine
+        '''
+        client = boto3.client('ecs', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name=region)
+        task_def_arns = client.list_task_definitions(status='ACTIVE')['taskDefinitionArns']
+
+        search_task_def_name = ':task-definition/' + jsonRead._get_batch_job_def_name() + ':'
+
+        for task_def_arn in task_def_arns:
+            if search_task_def_name in task_def_arn:
+                client.deregister_task_definition(taskDefinition=task_def_arn)
+                print("  -- Deregistered " + jsonRead._get_batch_job_def_name() + " Task Definition.")
 
     @classmethod
     def __delete_ecr_repository(cls, aws_access_key, aws_secret_key, region, repository):
