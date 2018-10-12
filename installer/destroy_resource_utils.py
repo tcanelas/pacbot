@@ -90,7 +90,7 @@ class DestroyResource(object):
         Delete ECR repository from AWS for Batch
         '''
         iam_client = boto3.client('iam', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name=region)
-        policyarn = "arn:aws:iam::"+ jsonRead._get_base_accountid() + ":policy/" + jsonRead._get_base_account_role_name()
+        policyarn = "arn:aws:iam::" + jsonRead._get_base_accountid() + ":policy/" + jsonRead._get_base_account_role_name()
         try:
             iam_client.delete_policy(PolicyArn=policyarn)
             print("  -- Deleting IAM policy, " + jsonRead._get_base_account_role_name())
