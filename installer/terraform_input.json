@@ -139,6 +139,13 @@
             "ui_image" :"_get_ui_image",
             "ui_container_name" : "_get_ui_container_name"
         },
+        "oss-ui" : {
+            "ui-ecs-cluster": "_get_ui_ecs_cluster", "task_definition_name" : "_get_ui_task_definition_name",
+            "ecs_execution_role_arn": "_get_ecs_execution_role_arn",
+            "vpc-id" : "_get_vpcid", "subnetid" : "_get_subnet",
+            "alb_sg" : "_get_security_id", "alb_name" : "_get_ui_alb_name", "ui_image" :"_get_ui_image",
+            "ui_container_name" : "_get_ui_container_name", "api-ecs-cluster":"_get_ui_ecs_cluster"
+        },
         "build-ui": {
             "build-ui" : "_build_ui_apps"
         }
