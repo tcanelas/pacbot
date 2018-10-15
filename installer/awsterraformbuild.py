@@ -65,7 +65,6 @@ def _create_aws_resources(aws_access_key, aws_secret_key, region):
             container.handler._create_ecr_image_push(
                 region, aws_access_key, aws_secret_key, './container/api', jsonRead._get_api_repo(), pacman_installation
             )
-        elif resource == "oss-ui":
             filecreator._ui_file_replace(jsonRead._get_base_accountid())
             container.handler._create_ecr_image_push(
                 region, aws_access_key, aws_secret_key, './container/ui', jsonRead._get_ui_repo(), pacman_installation
