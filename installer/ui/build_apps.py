@@ -12,6 +12,7 @@ class BuildPacman(object):
     pacman_clone_path = "pacman_cloned_dir_"  # This should be changed based on the system
 
     mvn_build_command = "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
+    mvn_clean_command = "mvn clean"
     npm_install = "npm install"
     bower_install = "bower install --allow-root"
     type_script_install = "npm install typescript@'>=2.1.0 <2.4.0'"
@@ -102,6 +103,7 @@ class BuildPacman(object):
         self.copy_jars_to_upload_dir(working_dir)
 
     def build_api_job_jars(self, working_dir):
+        stdout, stderr = self.run_bash_command(self.mvn_clean_command, working_dir)
         stdout, stderr = self.run_bash_command(self.mvn_build_command, working_dir)
 
     def copy_jars_to_upload_dir(self, working_dir):
