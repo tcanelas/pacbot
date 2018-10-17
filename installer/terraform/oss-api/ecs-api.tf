@@ -929,7 +929,7 @@ resource "aws_ecs_service" "auth" {
 output "alb_dns_name" {
   value = "${aws_lb.alb_apijobs.dns_name}"
 }
-output "pacman" {
+output "pacbot" {
   value = "${aws_lb.alb_apijobs.dns_name}"
 }
 
