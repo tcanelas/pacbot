@@ -13,7 +13,7 @@ resource "aws_batch_job_definition" "pacbot_job_definition" {
         {"name": "BASE_AWS_ACCOUNT", "value": "${var.BASE_AWS_ACCOUNT}"},
         {"name": "ES_URI", "value": "http://${var.ES_URI}:80"},
         {"name": "HEIMDALL_URI", "value": "http://${var.HEIMDALL_URI}:80"},
-        {"name": "pacbot_API_URI", "value": "${var.pacbot_API_URI}/api/"}
+        {"name": "PACMAN_API_URI", "value": "${var.PACMAN_API_URI}/api/"}
     ]
 }
 CONTAINER_PROPERTIES

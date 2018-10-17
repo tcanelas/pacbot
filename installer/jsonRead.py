@@ -608,7 +608,7 @@ def _get_statistics_jar_file_name():
 
 
 def _get_pacbot_url():
-    return resources['OSS-API']['pacbot_URL']
+    return resources['OSS-API']['PACMAN_URL']
 
 
 def _get_cloud_insights_token_url():
@@ -620,11 +620,11 @@ def _get_cloud_insights_cost_url():
 
 
 def _get_pacbot_service_user():
-    return resources['OSS-API']['pacbot_SERVICE_USER']
+    return resources['OSS-API']['PACMAN_SERVICE_USER']
 
 
 def _get_pacbot_service_password():
-    return resources['OSS-API']['pacbot_SERVICE_PASSWORD']
+    return resources['OSS-API']['PACMAN_SERVICE_PASSWORD']
 
 
 def _get_svc_corp_user_id():
