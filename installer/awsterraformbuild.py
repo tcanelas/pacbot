@@ -171,7 +171,7 @@ def _logs_display(logdetail):
 
 
 def append_ui_url_and_auth_details_to_log():
-    ui_url = jsonRead.get_value_from_output_json('oss-ui')
+    ui_url = jsonRead.get_value_from_output_json('oss-api')
     credentials = jsonRead.get_app_auth_credentials()
 
     cred1 = ("%s %s: %s" % ("*" * 17, 'Admin', credentials['admin']))
