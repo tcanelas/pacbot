@@ -607,8 +607,8 @@ def _get_statistics_jar_file_name():
     return resources['OSS-API']['statistics_jar_file_name']
 
 
-def _get_pacman_url():
-    return resources['OSS-API']['PACMAN_URL']
+def _get_pacbot_url():
+    return resources['OSS-API']['pacbot_URL']
 
 
 def _get_cloud_insights_token_url():
@@ -619,12 +619,12 @@ def _get_cloud_insights_cost_url():
     return resources['OSS-API']['CLOUD_INSIGHTS_COST_URL']
 
 
-def _get_pacman_service_user():
-    return resources['OSS-API']['PACMAN_SERVICE_USER']
+def _get_pacbot_service_user():
+    return resources['OSS-API']['pacbot_SERVICE_USER']
 
 
-def _get_pacman_service_password():
-    return resources['OSS-API']['PACMAN_SERVICE_PASSWORD']
+def _get_pacbot_service_password():
+    return resources['OSS-API']['pacbot_SERVICE_PASSWORD']
 
 
 def _get_svc_corp_user_id():
@@ -746,20 +746,20 @@ def _get_ui_repo():
 
 
 def _build_ui_apps(aws_access_key, aws_secret_key, region):
-    pacman_cwd = os.getcwd()
+    pacbot_cwd = os.getcwd()
     upload_dir = os.getcwd() + "/terraform/s3-upload/upload"
     import ui.build_apps as BA
-    BA.BuildPacman(
+    BA.Buildpacbot(
         _get_dns_name(),
         upload_dir,
-        "/var/log/pacman/pacman-install.log",
+        "/var/log/pacbot/pacbot-install.log",
     ).build_api_and_ui_apps(
         aws_access_key,
         aws_secret_key,
         region,
         bucket=_get_s3_bucket_name() + '-' + _get_base_accountid()
     )
-    os.chdir(pacman_cwd)
+    os.chdir(pacbot_cwd)
 
 
 def _get_tf_vars():

@@ -27,9 +27,9 @@ def create_KeyPair(region, accessKey, secretKey, keyname, filename):
         keypair = ec2.create_key_pair(KeyName=keyname)
         keyfile = open(filename, "w+")
         keyfile.write(keypair['KeyMaterial'])
-        print "pacman.ppk file generated & saved into the current location"
+        print "pacbot.ppk file generated & saved into the current location"
     except Exception as e:
-        print "pacman file is already created & stored"
+        print "pacbot file is already created & stored"
 
 
 def _get_cidr_list():

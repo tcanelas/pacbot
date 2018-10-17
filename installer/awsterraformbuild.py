@@ -13,7 +13,7 @@ import warnings
 from threading import Thread
 from destroy_resource_utils import confirm_resource_deletion
 
-pacman_installation = filecreator.create_pacman_log_file_handler()
+pacbot_installation = filecreator.create_pacbot_log_file_handler()
 
 
 def _create_aws_resources(aws_access_key, aws_secret_key, region):
@@ -58,16 +58,16 @@ def _create_aws_resources(aws_access_key, aws_secret_key, region):
             )
             filecreator.file_replace(jsonRead._get_base_accountid())
             container.handler._create_ecr_image_push(
-                region, aws_access_key, aws_secret_key, './container', jsonRead._get_batch_repo(), pacman_installation
+                region, aws_access_key, aws_secret_key, './container', jsonRead._get_batch_repo(), pacbot_installation
             )
         elif resource == "oss-api":
             filecreator._api_file_replace(jsonRead._get_base_accountid())
             container.handler._create_ecr_image_push(
-                region, aws_access_key, aws_secret_key, './container/api', jsonRead._get_api_repo(), pacman_installation
+                region, aws_access_key, aws_secret_key, './container/api', jsonRead._get_api_repo(), pacbot_installation
             )
             filecreator._ui_file_replace(jsonRead._get_base_accountid())
             container.handler._create_ecr_image_push(
-                region, aws_access_key, aws_secret_key, './container/ui', jsonRead._get_ui_repo(), pacman_installation
+                region, aws_access_key, aws_secret_key, './container/ui', jsonRead._get_ui_repo(), pacbot_installation
             )
         response = terraform.plan(refresh=False, capture_output=True, input=False, var=varsmap)
         if count == 2:
@@ -88,7 +88,7 @@ def _create_aws_resources(aws_access_key, aws_secret_key, region):
             print resource, " creation completed"
             response = terraform.output()
             try:
-                value = response['pacman']['value']
+                value = response['pacbot']['value']
                 if response is not None:
                     jsonRead._write_json(resource, value)
             except TypeError as e:
@@ -106,7 +106,7 @@ def _create_or_destroy(terraform, action, resource, approve):
         _logs_display(response)
         try:
             response = terraform.output()
-            value = response['pacman']['value']
+            value = response['pacbot']['value']
             if response is not None:
                 jsonRead._write_json(resource, value)
         except TypeError as e:
@@ -167,7 +167,7 @@ def _logs_display(logdetail):
         if len(logdetail[1]) == 0 and len(logdetail) == 3:
             _log_info = logdetail[2]
 
-        pacman_installation.write(_log_info)
+        pacbot_installation.write(_log_info)
 
 
 def append_ui_url_and_auth_details_to_log():

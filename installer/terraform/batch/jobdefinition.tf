@@ -1,4 +1,4 @@
-resource "aws_batch_job_definition" "pacman_job_definition" {
+resource "aws_batch_job_definition" "pacbot_job_definition" {
     name = "${var.batch_job_definition_name}"
     type = "container"
     container_properties = <<CONTAINER_PROPERTIES
@@ -13,7 +13,7 @@ resource "aws_batch_job_definition" "pacman_job_definition" {
         {"name": "BASE_AWS_ACCOUNT", "value": "${var.BASE_AWS_ACCOUNT}"},
         {"name": "ES_URI", "value": "http://${var.ES_URI}:80"},
         {"name": "HEIMDALL_URI", "value": "http://${var.HEIMDALL_URI}:80"},
-        {"name": "PACMAN_API_URI", "value": "${var.PACMAN_API_URI}/api/"}
+        {"name": "pacbot_API_URI", "value": "${var.pacbot_API_URI}/api/"}
     ]
 }
 CONTAINER_PROPERTIES
@@ -22,10 +22,10 @@ CONTAINER_PROPERTIES
     attempts = "${var.attempts_number}"
 }
 }
-output "pacmanrevision" {
-   value = "${aws_batch_job_definition.pacman_job_definition.revision}"
+output "pacbotrevision" {
+   value = "${aws_batch_job_definition.pacbot_job_definition.revision}"
 }
-output "pacman" {
-   value = "${aws_batch_job_definition.pacman_job_definition.revision}"
+output "pacbot" {
+   value = "${aws_batch_job_definition.pacbot_job_definition.revision}"
 }
 

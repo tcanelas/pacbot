@@ -96,7 +96,7 @@ def _detach_policy(iam, rolename, policyarn, roleindex):
 def _check_clientrole(accessKey, secretKey, region, resource, terraform):
     iam = boto3.client('sts', region_name=region, aws_access_key_id=accessKey, aws_secret_access_key=secretKey)
     targetRole_Arn = 'arn:aws:iam::' + jsonRead._get_client_accountid() + ':role/' + jsonRead._get_client_assume_role()
-    sts_assumerole = iam.assume_role(RoleArn=targetRole_Arn, RoleSessionName='Pacman_targetRole')
+    sts_assumerole = iam.assume_role(RoleArn=targetRole_Arn, RoleSessionName='pacbot_targetRole')
     targetConnection = boto3.Session(aws_access_key_id=sts_assumerole['Credentials']['AccessKeyId'],
                                      aws_secret_access_key=sts_assumerole['Credentials']['SecretAccessKey'],
                                      aws_session_token=sts_assumerole['Credentials']['SessionToken'])
@@ -120,7 +120,7 @@ def _check_clientrole(accessKey, secretKey, region, resource, terraform):
 
 
 def _check_security(accessKey, secretKey, region, resource, terraform):
-    group_name = "pacman"
+    group_name = "pacbot"
     client = boto3.client('ec2', region_name=region, aws_access_key_id=accessKey, aws_secret_access_key=secretKey)
     security_groups = client.describe_security_groups(Filters=[{'Name': 'group-name', 'Values': [group_name]}])
     if len(security_groups['SecurityGroups']) > 0:
@@ -407,7 +407,7 @@ def _check_oss_api(accessKey, secretKey, region, resource, terraform):
     if _check_loadbalancer(accessKey, secretKey, region, resource, terraform, jsonRead._get_alb_name()):
         logs = boto3.client('logs', region_name=region, aws_access_key_id=accessKey, aws_secret_access_key=secretKey)
         try:
-            logs.delete_log_group(logGroupName='pacman_oss_apis')
+            logs.delete_log_group(logGroupName='pacbot_oss_apis')
             return True
         except Exception as e:
             return False
@@ -418,7 +418,7 @@ def _check_oss_ui(accessKey, secretKey, region, resource, terraform):
     if _check_loadbalancer(accessKey, secretKey, region, resource, terraform, jsonRead._get_ui_alb_name()):
         logs = boto3.client('logs', region_name=region, aws_access_key_id=accessKey, aws_secret_access_key=secretKey)
         try:
-            logs.delete_log_group(logGroupName='pacman_oss_ui')
+            logs.delete_log_group(logGroupName='pacbot_oss_ui')
             return True
         except Exception as e:
             return False
