@@ -7,7 +7,7 @@ from os import walk
 import boto3
 
 
-class BuildPacman(object):
+class Buildpacbot(object):
     git_repo_url = "git@github.com:tmobile/pacbot.git"  # This should be changed based on the Repo
     mvn_build_command = "mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
     mvn_clean_command = "mvn clean"
