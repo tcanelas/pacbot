@@ -61,7 +61,7 @@
          "pac-managed-rules.jar"]
     },
     "RDSInstances": {
-      "rdsname": "pacbotdata",
+      "rdsname": "pacmandata",
       "identifier": "pacbotdbinstance",
       "rdsdatabase": "mysql",
       "rdsinstance": "db.t2.medium",
@@ -78,7 +78,7 @@
     },
     "Redshift": {
       "redshiftname": "pacbot-data",
-      "redshiftdatabasename": "pacbot_data",
+      "redshiftdatabasename": "pacman_data",
       "nodetype": "dc2.large",
       "clustertype": "single node",
       "nodecount": "1",
