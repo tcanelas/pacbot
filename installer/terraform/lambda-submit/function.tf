@@ -30,7 +30,7 @@ resource "aws_cloudwatch_event_target" "target_for_cloudwatch" {
   input = <<EOF
   {
   "jobName": "AWS-Data-Collector",
-  "jobUuid": "pacbot-aws-inventory-jar-with-dependencies",
+  "jobUuid": "pacman-aws-inventory-jar-with-dependencies",
   "environmentVariables": [
     {
       "name": "REDSHIFT_INFO",
