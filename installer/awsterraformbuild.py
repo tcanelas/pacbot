@@ -178,6 +178,10 @@ def append_ui_url_and_auth_details_to_log():
     cred2 = ("%s %s: %s" % ("*" * 18, 'User', credentials['user']))
     ui_url = ("%s %s: %s") % ("*" * 10, 'Login Domain', ui_url)
 
+    print (ui_url)
+    print (cred1)
+    print (cred2)
+
     info = "\n%s\n%s\n%s\n%s\n%s" % ("*" * 120, ui_url, cred1, cred2, "*" * 120)
 
     _logs_display(['index', info])
