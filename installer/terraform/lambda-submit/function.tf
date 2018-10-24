@@ -44,7 +44,7 @@ resource "aws_cloudwatch_event_target" "target_for_cloudwatch" {
   "params": [
     {
       "encrypt": false,
-      "value": "com.tmobile.cso.pacbot",
+      "value": "com.tmobile.cso.pacman",
       "key": "package_hint"
     },
     {
