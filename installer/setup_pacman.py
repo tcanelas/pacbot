@@ -39,9 +39,9 @@ policylist = []
 assignedpolicieslist = []
 client_accountid = ''
 
-accessKey = raw_input("Enter base Account Access Key=")
-secretKey = raw_input("Enter base Account Secret Key=")
-region = raw_input("Enter base Account AWS region=")
+accessKey = os.environ.get('PACBOT_AWS_ACCESS_KEY') or raw_input("Enter base Account Access Key=")
+secretKey = os.environ.get('PACBOT_AWS_SECRET_KEY') or raw_input("Enter base Account Secret Key=")
+region = os.environ.get('PACBOT_AWS_REGION') or raw_input("Enter base Account AWS region=")
 # client_arn=raw_input("Enter service account role arn=")
 
 vpcid = jsonRead._get_vpcid()
