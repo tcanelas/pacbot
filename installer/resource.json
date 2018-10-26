@@ -2,7 +2,7 @@
   "role": "FullAccessManagedRole",
   "access_key": "access",
   "secret_key": "secret",
-  "region": "eu-central-1",
+  "region": "eu-west-1",
   "resources": {
     "IAMPolicies": {
       "s3": [
@@ -199,9 +199,9 @@
         "oss-ui" : "pacman-ui"
     },
     "Network": {
-      "vpcID": "vpc-2255008",
+      "vpcID": "vpc-0ad9a9da495abf542",
       "CIDR": ["10.0.0.0/16"],
-      "Subnet": ["subnet-9446173","subnet-9645220"]
+      "Subnet": ["subnet-05cf576b90dad3f55","subnet-071592d00bc72467d"]
     },
     "AppAuth": {
       "admin": "admin@pacbot.org / pacman",
